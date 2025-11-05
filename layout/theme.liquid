@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang="{{ request.locale.iso_code }}" class="bg-white dark:bg-gray-950 scheme-light dark:scheme-dark">
   <head>
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
@@ -9,7 +9,8 @@
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
-
+    
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> {% endcomment %}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ content_for_header }}
   </head>

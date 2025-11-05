@@ -6,8 +6,9 @@
 {% endcomment %}
 
 <h1>{{ 'cart.title' | t }}</h1>
+<div data-vue-cart-page></div>
 
-<form action="{{ routes.cart_url }}" method="post">
+<form class="cart-fallback" action="{{ routes.cart_url }}" method="post">
   <table>
     {% for item in cart.items %}
       <tr>

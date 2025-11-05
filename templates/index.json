@@ -12,9 +12,17 @@
     "main": {
       "type": "hello-world",
       "settings": {}
+    },
+    "elements_demo": {
+      "type": "elements-demo",
+      "settings": {
+        "heading": "Tailwind Plus Elements demo",
+        "intro": "<p>Examples of Tailwind Plus Elements components.</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "elements_demo"
   ]
 }

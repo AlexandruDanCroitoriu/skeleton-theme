@@ -1,0 +1,161 @@
+<section class="mx-auto max-w-3xl px-4 py-8">
+  {% if section.settings.heading != blank %}
+    <h2 class="mb-4 text-2xl font-semibold text-gray-900">{{ section.settings.heading }}</h2>
+  {% endif %}
+  {% if section.settings.intro != blank %}
+    <div class="prose prose-sm mb-6 max-w-none text-gray-700">{{ section.settings.intro }}</div>
+  {% endif %}
+
+  
+  <!-- Disclosure -->
+  <div class="mb-10">
+    <button command="--toggle" commandfor="disclosure-{{ section.id }}" type="button" class="rounded bg-gray-800 px-3 py-2 text-white hover:bg-gray-700">Toggle details</button>
+    <el-disclosure hidden id="disclosure-{{ section.id }}" class="mt-2 rounded border border-gray-200 bg-white p-3 text-gray-700 shadow">
+      This is the disclosure content.
+    </el-disclosure>
+  </div>
+
+  <!-- Accordion -->
+  <div id="accordion-{{ section.id }}" class="mb-10 w-full divide-y divide-gray-200 rounded border border-gray-200 bg-white">
+    <div class="p-3">
+      <button command="--toggle" commandfor="accordion-item-{{ section.id }}-1" type="button" class="flex w-full items-center justify-between text-left">
+        <span class="font-medium text-gray-900">Item 1</span>
+        <span class="text-gray-500">+</span>
+      </button>
+      <el-disclosure hidden id="accordion-item-{{ section.id }}-1" class="mt-2 text-gray-700">Content for item 1.</el-disclosure>
+    </div>
+    <div class="p-3">
+      <button command="--toggle" commandfor="accordion-item-{{ section.id }}-2" type="button" class="flex w-full items-center justify-between text-left">
+        <span class="font-medium text-gray-900">Item 2</span>
+        <span class="text-gray-500">+</span>
+      </button>
+      <el-disclosure hidden id="accordion-item-{{ section.id }}-2" class="mt-2 text-gray-700">Content for item 2.</el-disclosure>
+    </div>
+    <div class="p-3">
+      <button command="--toggle" commandfor="accordion-item-{{ section.id }}-3" type="button" class="flex w-full items-center justify-between text-left">
+        <span class="font-medium text-gray-900">Item 3</span>
+        <span class="text-gray-500">+</span>
+      </button>
+      <el-disclosure hidden id="accordion-item-{{ section.id }}-3" class="mt-2 text-gray-700">Content for item 3.</el-disclosure>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <el-tab-group id="tabs-{{ section.id }}" class="mb-10 w-full">
+    <el-tab-list id="tablist-{{ section.id }}" class="flex gap-2 border-b border-gray-200">
+      <button type="button" class="rounded-t bg-white px-3 py-2 text-gray-700 hover:bg-gray-50">Tab 1</button>
+      <button type="button" class="rounded-t bg-white px-3 py-2 text-gray-700 hover:bg-gray-50">Tab 2</button>
+      <button type="button" class="rounded-t bg-white px-3 py-2 text-gray-700 hover:bg-gray-50">Tab 3</button>
+    </el-tab-list>
+    <el-tab-panels id="tabpanels-{{ section.id }}" class="rounded-b bg-white p-4 text-gray-700 shadow">
+      <div>Content 1</div>
+      <div hidden>Content 2</div>
+      <div hidden>Content 3</div>
+    </el-tab-panels>
+  </el-tab-group>
+
+  <!-- Dialog/Modal -->
+  <div class="mb-10">
+    <button command="show-modal" commandfor="dialog-{{ section.id }}" type="button" class="rounded bg-indigo-600 px-3 py-2 text-white hover:bg-indigo-500">Open Modal</button>
+    <el-dialog id="dialog-wrapper-{{ section.id }}">
+      <dialog id="dialog-{{ section.id }}" class="backdrop:bg-transparent m-0 p-0">
+        <el-dialog-backdrop class="pointer-events-none fixed inset-0 bg-black/50"></el-dialog-backdrop>
+        <el-dialog-panel class="mx-auto my-24 w-full max-w-md rounded bg-white p-4 text-gray-800 shadow">
+          <h3 class="mb-2 text-lg font-semibold">Modal title</h3>
+          <p class="mb-4 text-sm text-gray-600">This is a minimal modal using el-dialog.</p>
+          <div class="flex justify-end gap-2">
+            <button command="close" commandfor="dialog-{{ section.id }}" type="button" class="rounded border border-gray-300 px-3 py-2 text-gray-700 hover:bg-gray-50">Cancel</button>
+            <button type="submit" class="rounded bg-indigo-600 px-3 py-2 text-white hover:bg-indigo-500">Confirm</button>
+          </div>
+        </el-dialog-panel>
+      </dialog>
+    </el-dialog>
+  </div>
+
+  <!-- Drawer (from right) -->
+  <div class="mb-10">
+    <button command="show-modal" commandfor="drawer-{{ section.id }}" type="button" class="rounded bg-indigo-600 px-3 py-2 text-white hover:bg-indigo-500">Open Drawer</button>
+    <el-dialog id="drawer-wrapper-{{ section.id }}">
+      <dialog id="drawer-{{ section.id }}" class="backdrop:bg-transparent m-0 h-screen w-screen p-0">
+        <el-dialog-backdrop class="pointer-events-none fixed inset-0 bg-black/50"></el-dialog-backdrop>
+        <el-dialog-panel class="ml-auto h-full w-80 max-w-[90vw] bg-white p-4 text-gray-800 shadow-lg">
+          <div class="mb-4 flex items-center justify-between">
+            <h3 class="text-lg font-semibold">Drawer</h3>
+            <button command="close" commandfor="drawer-{{ section.id }}" type="button" class="rounded p-2 text-gray-500 hover:bg-gray-100">✕</button>
+          </div>
+          <p class="text-sm text-gray-600">Right-side drawer content.</p>
+        </el-dialog-panel>
+      </dialog>
+    </el-dialog>
+  </div>
+
+  <!-- Popover -->
+  <div id="popover-wrapper-{{ section.id }}" class="mb-10 inline-block">
+    <button popovertarget="popover-{{ section.id }}" type="button" class="rounded border border-gray-300 bg-white px-3 py-2 text-gray-700 hover:bg-gray-50">Open Popover</button>
+    <el-popover id="popover-{{ section.id }}" anchor="bottom start" popover class="mt-1 rounded border border-gray-200 bg-white p-3 text-gray-700 shadow">
+      This is popover content.
+    </el-popover>
+  </div>
+
+  <!-- Tooltip -->
+  <div id="tooltip-wrapper-{{ section.id }}" class="mb-10 inline-block">
+    <button popovertarget="tooltip-{{ section.id }}" popovertargetaction="toggle" type="button" class="rounded px-2 py-1 text-sm text-gray-700 underline decoration-gray-400 underline-offset-2 hover:text-gray-900">
+      Hover or click me
+    </button>
+    <el-popover id="tooltip-{{ section.id }}" anchor="top" popover class="rounded bg-gray-900 px-2 py-1 text-xs text-white shadow">
+      Tooltip text
+    </el-popover>
+  </div>
+
+  <!-- Dropdown/Menu -->
+  <div class="mb-10">
+    <el-dropdown id="dropdown-{{ section.id }}" class="inline-block">
+      <button type="button" class="rounded border border-gray-300 bg-white px-3 py-2 text-gray-700 hover:bg-gray-50">Options</button>
+      <el-menu id="dropdown-menu-{{ section.id }}" anchor="bottom start" popover class="mt-1 w-40 rounded border border-gray-200 bg-white p-1 shadow">
+        <button class="block w-full rounded px-3 py-2 text-left text-gray-700 hover:bg-gray-100" type="button">Edit</button>
+        <button class="block w-full rounded px-3 py-2 text-left text-gray-700 hover:bg-gray-100" type="button">Duplicate</button>
+        <hr class="my-1 border-gray-200" role="none" />
+        <button class="block w-full rounded px-3 py-2 text-left text-gray-700 hover:bg-gray-100" type="button">Archive</button>
+        <button class="block w-full rounded px-3 py-2 text-left text-gray-700 hover:bg-gray-100" type="button">Delete</button>
+      </el-menu>
+    </el-dropdown>
+  </div>
+
+  <!-- Toast/Alert -->
+  <div id="toast-wrapper-{{ section.id }}" class="mb-10">
+    <el-disclosure id="toast-{{ section.id }}" class="w-80 max-w-[90vw] rounded border border-gray-200 bg-white p-3 text-gray-800 shadow">
+      <div class="flex items-start gap-2">
+        <div class="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-green-500"></div>
+        <div class="flex-1">
+          <p class="text-sm font-medium">Saved</p>
+          <p class="text-xs text-gray-600">Your changes have been saved.</p>
+        </div>
+        <button command="--hide" commandfor="toast-{{ section.id }}" type="button" class="rounded p-1 text-gray-500 hover:bg-gray-100">✕</button>
+      </div>
+    </el-disclosure>
+  </div>
+
+  <!-- Switch/Toggle -->
+  <div class="mb-2">
+    <label id="switch-{{ section.id }}" class="inline-flex cursor-pointer items-center">
+      <input type="checkbox" class="peer sr-only" />
+      <span class="relative inline-block h-5 w-9 rounded-full bg-gray-300 transition-colors peer-checked:bg-indigo-600">
+        <span class="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow transition peer-checked:translate-x-4"></span>
+      </span>
+      <span class="ml-2 text-sm text-gray-700">Enable</span>
+    </label>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elements demo",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tailwind Plus Elements demo" },
+    { "type": "richtext", "id": "intro", "label": "Intro text", "default": "<p>Examples of Tailwind Plus Elements components.</p>" }
+  ],
+  "presets": [
+    { "name": "Elements demo" }
+  ]
+}
+{% endschema %}

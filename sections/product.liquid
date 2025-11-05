@@ -17,29 +17,30 @@
   <p>{{ product.description }}</p>
 </div>
 
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+  <div class="product-form">
+    {% form 'product', product, class: 'product-form__form', data-ajax-product-form: true %}
+      {% assign current_variant = product.selected_or_first_available_variant %}
 
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
-          {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
+      <select name="id">
+        {% for variant in product.variants %}
+          <option
+            value="{{ variant.id }}"
+            {% if variant == current_variant %}
+              selected="selected"
+            {% endif %}
+          >
+            {{ variant.title }} - {{ variant.price | money }}
+          </option>
+        {% endfor %}
+      </select>
 
-    <input type="text" name="quantity" min="1" value="1">
+      <input type="text" name="quantity" min="1" value="1">
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
-</div>
+      <input type="submit" value="Acquire">
+      <p class="text-red-600 text-sm mt-2" data-ajax-add-error aria-live="polite"></p>
+      {{ form | payment_button }}
+    {% endform %}
+  </div>
 
 {% schema %}
 {
