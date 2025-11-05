@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "shopify": {
+      "type": "local",
+      "command": ["npx", "-y", "@shopify/dev-mcp@latest"],
+      "enabled": true,
+      "environment": {
+        "LIQUID_VALIDATION_MODE": "full"
+      }
+    }
+  }
+}
