@@ -10,6 +10,7 @@
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
 
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ content_for_header }}
   </head>
 
@@ -19,5 +20,6 @@
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+    <script type="module" src="{{ 'app.js' | asset_url }}"></script>
   </body>
 </html>
